@@ -10,11 +10,35 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+    <style>
+        :root {
+            --theme-color: #560bad;
+        }
+
+        nav {
+            background-color: var(--theme-color);
+        }
+
+        .hero-btn {
+            background-color: var(--theme-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .hero-btn:hover {
+            background-color: #4a0c8f;
+        }
+    </style>
+
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark">
             <div class="container">
                 <a class="navbar-brand" href="#">Navbar</a>
                 <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
@@ -23,7 +47,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
-                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+                    <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" href="#" aria-current="page">Home
                                 <span class="visually-hidden">(current)</span></a>
@@ -51,48 +75,70 @@
         </nav>
 
     </header>
-    <main class="container-fluid">
-
-        <div class="row align-items-center vh-100">
-
-            <div class="col-sm-8 col-md-6 col-xl-3 mx-auto">
-
-                <div class="card shadow">
-                    <div class="card-body p-5">
-                        <!-- <h4 class="text-center my-4">Company Logo</h4> -->
-                        <img class="mx-auto d-block my-4" height="100" src="https://miro.medium.com/v2/resize:fit:1125/0*N1fmHtI8gmkH_2Vu.png" alt="">
-                        <h5 class="text-center">Login Form</h5>
-
-                        <form>
-
-                            <div class="mb-3">
-                                <label for="" class="form-label">Email Address</label>
-                                <input type="text" name="" id="" class="form-control" placeholder=""
-                                    aria-describedby="helpId" />
-                                <small id="helpId" class="text-muted">Enter a registered email address</small>
-                            </div>
 
 
-                            <div class="mb-3">
-                                <label for="" class="form-label">Password</label>
-                                <input type="password" name="" id="" class="form-control" placeholder=""
-                                    aria-describedby="helpId" />
-                                <small id="helpId" class="text-muted">Enter valid password</small>
-                            </div>
+    <main>
+        <section class="container py-5">
 
-                            <div class="text-center">
-                                <button class="btn btn-dark mt-4 w-50">Submit</button>
-                            </div>
-                        </form>
+            <div class="row flex-row-reverse" style="row-gap: 40px;">
 
-                    </div>
+                <div class="col-md-5">
+                    <img class="img-fluid" src="hero-image.svg" alt="">
                 </div>
+
+                <div class="col-md-7 my-auto text-center text-md-start">
+
+                    <h1 class="display-5 fw-bold">Main Page Title</h1>
+                    <p class="fs-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. At, dolor repudiandae
+                        asperiores
+                        nostrum impedit recusandae modi, accusantium aut vel voluptate atque eius eos, pariatur
+                        voluptates inventore perspiciatis fuga deleniti consequatur?</p>
+
+                    <button class="hero-btn mt-4">Get Started</button>
+                </div>
+
 
             </div>
 
-        </div>
+        </section>
 
+        <section class="bg-light py-5">
+
+            <div class="container">
+                <div class="row gy-5">
+                    <div class="col-md-4">
+                        <div class="card border-0">
+                            <img class="card-img-top" src="service-1.svg" alt="">
+                            <div class="card-body">
+                                <h3 class="card-title">Title</h3>
+                                <p class="card-text">Text</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Title</h3>
+                                <p class="card-text">Text</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Title</h3>
+                                <p class="card-text">Text</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
+        </section>
     </main>
+
+
     <footer>
         <!-- place footer here -->
     </footer>
