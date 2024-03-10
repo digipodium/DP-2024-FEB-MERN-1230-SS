@@ -5,15 +5,16 @@ import Navbar from '@/components/navbar';
 
 const Template = ({ children }) => {
 
-    useEffect(() => {
-      require('bootstrap/dist/js/bootstrap.min.js');
-    }, [])
+  useEffect(() => {
+    require('bootstrap/dist/js/bootstrap.min.js');
+  }, []);
 
-    return (
-        <div>
-            <Navbar/>
-            {children}</div>
-    )
+  return (
+    <div>
+      <Navbar />
+      {children}
+    </div>
+  )
 }
 
 export default Template;
