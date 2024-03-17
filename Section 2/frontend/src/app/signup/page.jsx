@@ -1,7 +1,35 @@
+'use client';
+import { useFormik } from 'formik';
 import Link from 'next/link';
-import React from 'react'
+import React from 'react';
+import * as Yup from 'yup';
+
+const signupSchema = Yup.object().shape({
+    name : Yup.string().required('Naam nhi hai tumhara')
+    .min(3, 'Too Short'),
+    email: Yup.string().required('Email nhi hai tumhara')
+    .email('Aisa email nhi hota').min(4, 'Too Short'),
+    password: Yup.string().required('Password nhi hai tumhara')
+    .min(8, 'Too Short'),
+    confirmPassword: Yup.string().required('Password nhi hai tumhara')
+});
 
 const Signup = () => {
+
+    const signupForm = useFormik({
+        initialValues: {
+            name : '',
+            email : '',
+            password : '',
+            confirmPassword : ''
+        },
+        onSubmit: (values) => {
+            console.log(values);
+            // send data to backend
+        },
+        validationSchema: signupSchema
+    })
+
   return (
     <section className="vh-100 bg-primary-subtle">
       <div className="container py-5 h-100">
@@ -19,11 +47,6 @@ const Signup = () => {
                   }}>
 
                   </div>
-                  {/* <img
-                    src="https://assets.materialup.com/uploads/7563d4bc-0ed9-4202-a86c-ac8dc46e73ef/preview.jpg"
-                    alt="Sample"
-                    className="img-fluid"
-                  /> */}
                 </div>
                 <div className="col-xl-6">
 
@@ -31,13 +54,15 @@ const Signup = () => {
                     <h3 className="mb-5 text-primary fw-bold">
                       Registration Form
                     </h3>
-                    <form>
+                    <form onSubmit={ signupForm.handleSubmit } >
 
                       <div class="mb-3">
                         <label for="" class="form-label">Email Address</label>
                         <input
                           type="text"
                           id="email"
+                          onChange={ signupForm.handleChange }
+                          value={ signupForm.values.email }
                           class="form-control"
                           placeholder=""
                         />
@@ -48,6 +73,8 @@ const Signup = () => {
                         <input
                           type="text"
                           id="name"
+                          onChange={ signupForm.handleChange }
+                          value={ signupForm.values.name }
                           class="form-control"
                           placeholder=""
                         />
@@ -58,6 +85,8 @@ const Signup = () => {
                         <input
                           type="password"
                           id="password"
+                          onChange={ signupForm.handleChange }
+                          value={ signupForm.values.password }
                           class="form-control"
                           placeholder=""
                         />
@@ -67,7 +96,9 @@ const Signup = () => {
                         <label for="" class="form-label">Confirm Password</label>
                         <input
                           type="password"
-                          id="cpassword"
+                          id="confirmPassword"
+                          onChange={ signupForm.handleChange }
+                          value={ signupForm.values.confirmPassword }
                           class="form-control"
                           placeholder=""
                         />
