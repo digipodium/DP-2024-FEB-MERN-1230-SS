@@ -66,7 +66,11 @@ const Signup = () => {
                           class="form-control"
                           placeholder=""
                         />
-                        <small class="text-muted">Enter Valid Email Address</small>
+                        {
+                            signupForm.touched.email && (
+                                <small class="text-danger">{signupForm.errors.email}</small>
+                            )
+                        }
                       </div>
                       <div class="mb-3">
                         <label for="" class="form-label">Name</label>
