@@ -18,26 +18,39 @@ const TodoList = () => {
         }
     }
 
+    const deleteTask = (index) => {
+        console.log(index);
+        const temp = taskArray;
+        temp.splice(index, 1);
+        setTaskArray([...temp]);
+    }
+
+    const completeTask = (index) => {
+        const temp = taskArray;
+        temp[index].completed = !temp[index].completed;
+        setTaskArray([...temp]);
+    }
+
     return (
         <div className='vh-100 bg-primary-subtle'>
-
             <div className='container py-3'>
-
                 <h1 className='display-2 text-center my-3'>ToDo List - {taskArray.length} </h1>
-
                 <div className='card shadow'>
                     <div className='card-header'>
-
                         <input onKeyDown={addNewTask} type="text" className='form-control border-3 border-primary' />
-
                     </div>
                     <div className='card-body'>
-
                         {
                             taskArray.map((task, index) => {
-                                return <div key={index} className='d-flex justify-content-between p-3'>
-                                    <p className='m-0 h5'>{task.text}</p>
-                                    <button className='btn btn-danger'>Delete</button>
+                                return <div key={index} className='d-flex justify-content-between align-items-center p-3'>
+                                    <p className='m-0 h5 w-50'>{task.text}</p>
+                                    {
+                                        task.completed ? 
+                                        <span className='badge text-bg-success'>Completed</span> : 
+                                        <span className='badge text-bg-warning'>Pending</span>
+                                    }
+                                    <button onClick={ () => { completeTask(index) } } className={`btn btn-${task.completed ? 'success' : 'primary'}`}>Complete</button>
+                                    <button onClick={ () => { deleteTask(index) } } className='btn btn-danger'>Delete</button>
                                 </div>
                             })
                         }
