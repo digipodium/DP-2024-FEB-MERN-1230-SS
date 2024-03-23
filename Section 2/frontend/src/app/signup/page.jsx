@@ -10,8 +10,12 @@ const signupSchema = Yup.object().shape({
     email: Yup.string().required('Email nhi hai tumhara')
     .email('Aisa email nhi hota').min(4, 'Too Short'),
     password: Yup.string().required('Password nhi hai tumhara')
-    .min(8, 'Too Short'),
+    .min(4, 'Too Short').matches(/[a-z]/, 'lowercase letter required')
+    .matches(/[A-Z]/, 'uppercase letter required')
+    .matches(/[0-9]/, 'number required')
+    .matches(/\W/, 'special character required'),
     confirmPassword: Yup.string().required('Password nhi hai tumhara')
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
 });
 
 const Signup = () => {
@@ -57,44 +61,52 @@ const Signup = () => {
                     <form onSubmit={ signupForm.handleSubmit } >
 
                       <div class="mb-3">
-                        <label for="" class="form-label">Email Address</label>
+                        <label for="" className="form-label">Email Address</label>
                         <input
                           type="text"
                           id="email"
                           onChange={ signupForm.handleChange }
                           value={ signupForm.values.email }
-                          class="form-control"
+                          className="form-control"
                           placeholder=""
                         />
                         {
                             signupForm.touched.email && (
-                                <small class="text-danger">{signupForm.errors.email}</small>
+                                <small className="text-danger">{signupForm.errors.email}</small>
                             )
                         }
                       </div>
                       <div class="mb-3">
-                        <label for="" class="form-label">Name</label>
+                        <label for="" className="form-label">Name</label>
                         <input
                           type="text"
                           id="name"
                           onChange={ signupForm.handleChange }
                           value={ signupForm.values.name }
-                          class="form-control"
+                          className="form-control"
                           placeholder=""
                         />
-                        <small class="text-muted">Enter Full Name</small>
+                        {
+                            signupForm.touched.name && (
+                                <small className="text-danger">{signupForm.errors.name}</small>
+                            )
+                        }
                       </div>
                       <div class="mb-3">
                         <label for="" class="form-label">Password</label>
                         <input
-                          type="password"
+                          type="text"
                           id="password"
                           onChange={ signupForm.handleChange }
                           value={ signupForm.values.password }
                           class="form-control"
                           placeholder=""
                         />
-                        <small class="text-muted">Enter Strong Password</small>
+                        {
+                            signupForm.touched.password && (
+                                <small className="text-danger">{signupForm.errors.password}</small>
+                            )
+                        }
                       </div>
                       <div class="mb-3">
                         <label for="" class="form-label">Confirm Password</label>
@@ -106,7 +118,11 @@ const Signup = () => {
                           class="form-control"
                           placeholder=""
                         />
-                        <small class="text-muted">Passwords Must Match</small>
+                        {
+                            signupForm.touched.confirmPassword && (
+                                <small className="text-danger">{signupForm.errors.confirmPassword}</small>
+                            )
+                        }
                       </div>
                       <div className="form-check mb-4">
                         <input
