@@ -1,6 +1,7 @@
 'use client';
 import { useFormik } from 'formik'
 import React from 'react'
+import toast from 'react-hot-toast';
 
 const UploadPost = () => {
 
@@ -21,7 +22,16 @@ const UploadPost = () => {
                     'Content-Type' : 'application/json'
                 }
             })
-
+            .then((res) => {
+                if(res.status === 200){
+                    toast.success('Post uploaded successfully');
+                }else{
+                    toast.error('Error in uploading post');
+                }
+            }).catch((err) => {
+                console.log(err);
+                toast.error('Error in uploading post');
+            });
         }
     })
 
