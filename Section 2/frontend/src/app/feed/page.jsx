@@ -44,13 +44,33 @@ const Feed = () => {
             });
     }
 
+    const likePost = (post) => {
+        fetch('http://localhost:5000/post/update/'+post._id, {
+            method: 'PUT',
+            body: JSON.stringify( { likes : post.likes + 1 } ),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((res) => {
+            if(res.status === 200){
+                toast.success('Post liked');
+                readPostData();
+            }else{
+                toast.error('Error in liking post');
+            }
+        }).catch((err) => {
+            console.log(err);
+            toast.error('Error in liking post');
+        });
+    }
+
 
     return (
         <div>
             <div className='col-md-4 mx-auto py-5'>
                 <h2 className='text-center'>Post Feed</h2>
                 <hr />
-
                 {
                     postList.map((post) => {
                         return <div key={post._id} className='card mb-4'>
@@ -70,7 +90,7 @@ const Feed = () => {
                                 <h5>{post.title}</h5>
                                 <div className='row border-top border-bottom'>
                                     <div className="col-4">
-                                        <button className='btn btn-white w-100'>
+                                        <button className='btn btn-white w-100' onClick={ () => { likePost(post) } }>
                                             <IconHeart size={25} color='#f00' /> 
                                         </button>
                                     </div>
